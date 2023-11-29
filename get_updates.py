@@ -1,10 +1,12 @@
 from settings import TOKEN
 import requests
 from time import sleep
+from send_message import send_message
 
-url = f'https://api.telegram.org/bot{TOKEN}/getUpdates'
+
 
 def get_updates():
+    url = f'https://api.telegram.org/bot{TOKEN}/getUpdates'
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -27,7 +29,7 @@ while True:
         text = last_update['message']['text']
         user = last_update['message']['from']
 
-        print(text, "from", user['first_name'])
+        send_message(user['id'], text)
         last_update_id = last_update['update_id']
 
     sleep(0.5)
