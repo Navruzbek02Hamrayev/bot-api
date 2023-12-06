@@ -12,23 +12,19 @@ def send_message(chat_id, text, reply_markup):
     }
     requests.post(url, json=payload)
 
-btn1 = {'text': 'button 1'}
-btn2 = {
-    'text': 'share location',
-    'request_location': True
+btn1 = {
+    'text': 'go google',
+    'url': 'http://google.com'
 }
-btn3 = {
-    'text': 'share contact',
-    'request_contact': True
+btn2 = {
+    'text': 'go channel',
+    'url': 'https://t.me/naxalov'
 }
 
 reply_markup = {
-    "keyboard": [
-        [btn1, btn2],
-        [btn3]
+    "inline_keyboard": [
+        [btn1, btn2]
     ],
-    "one_time_keyboard": True,
-    "resize_keyboard": True
 }
 
-send_message(chat_id=chat_id, text='ok', reply_markup=reply_markup)
+send_message(chat_id=chat_id, text='inline keyboard', reply_markup=reply_markup)
